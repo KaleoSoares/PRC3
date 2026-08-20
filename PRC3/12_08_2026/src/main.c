@@ -169,5 +169,116 @@ int main()
     printf("    (-5 + 14i) / (1 + 4i) = %.2f + %.2fi (Esperado: 3.00 + 2.00i)\n\n", div2.rec.real, div2.rec.imag);
     */
 
+    /*
+    // --- TESTE 7: conjugado_CPLX ---
+    printf("--- Teste 7: conjugado_CPLX ---\n");
+    t_cplx z1;
+    z1.f = rec;
+    z1.rec.real = 3.0;
+    z1.rec.imag = 4.0;
+
+    t_cplx conj1 = conjugado_CPLX(z1);
+    printf("[1] Conjugado de Retangular (3 + 4i):\n");
+    printf("    Resultado: %.2f + (%.2fi) (Esperado: 3.00 - 4.00i)\n", conj1.rec.real, conj1.rec.imag);
+    printf("    Formato: %s\n\n", conj1.f == rec ? "RETANGULAR" : "POLAR");
+
+    t_cplx p1 = converte_CPLX(z1, pol);
+    t_cplx conj2 = conjugado_CPLX(p1);
+    printf("[2] Conjugado de Polar (Mod 5.00, Arg 0.9273 rad):\n");
+    printf("    Modulo: %.2f (Esperado: 5.00)\n", conj2.pol.mod);
+    printf("    Angulo: %.4f rad (Esperado: -0.9273 rad)\n", conj2.pol.arg);
+    printf("    Formato: %s\n\n", conj2.f == pol ? "POLAR" : "RETANGULAR");
+    */
+
+    /*
+    // --- TESTES 8 a 12: Acessores (mod, arg, img, re) ---
+    printf("--- Testes 8 a 12: Acessores ---\n");
+    t_cplx z1;
+    z1.f = rec;
+    z1.rec.real = 3.0;
+    z1.rec.imag = 4.0;
+
+    printf("[8]  mod_CPLX(3 + 4i): %.2f (Esperado: 5.00)\n", mod_CPLX(z1));
+    printf("[10] arg_CPLX(3 + 4i): %.4f rad (Esperado: 0.9273 rad)\n", arg_CPLX(z1));
+    printf("[11] img_CPLX(3 + 4i): %.2f (Esperado: 4.00)\n", img_CPLX(z1));
+    printf("[12] re_CPLX(3 + 4i):  %.2f (Esperado: 3.00)\n\n", re_CPLX(z1));
+    */
+
+    /*
+    // --- TESTE 13: potencia_CPLX ---
+    printf("--- Teste 13: potencia_CPLX ---\n");
+    t_cplx z_base;
+    z_base.f = rec;
+    z_base.rec.real = 1.0;
+    z_base.rec.imag = 1.0;
+
+    t_cplx pot1 = potencia_CPLX(z_base, 2.0);
+    printf("[1] (1 + 1i)^2 = %.2f + %.2fi (Esperado: 0.00 + 2.00i)\n", pot1.rec.real, pot1.rec.imag);
+    printf("    Formato: %s\n\n", pot1.f == rec ? "RETANGULAR" : "POLAR");
+
+    t_cplx p_base;
+    p_base.f = pol;
+    p_base.pol.mod = 2.0;
+    p_base.pol.arg = M_PI / 6.0;
+
+    t_cplx pot2 = potencia_CPLX(p_base, 3.0);
+    printf("[2] (2 < 30 deg)^3 em Polar:\n");
+    printf("    Modulo: %.2f (Esperado: 8.00)\n", pot2.pol.mod);
+    printf("    Angulo: %.4f rad (Esperado: %.4f rad [90 deg])\n", pot2.pol.arg, M_PI / 2.0);
+    printf("    Formato: %s\n\n", pot2.f == pol ? "POLAR" : "RETANGULAR");
+    */
+
+    /*
+    // --- TESTE 14: exp_CPLX ---
+    printf("--- Teste 14: exp_CPLX ---\n");
+    t_cplx z_euler;
+    z_euler.f = rec;
+    z_euler.rec.real = 0.0;
+    z_euler.rec.imag = M_PI;
+
+    t_cplx res_euler = exp_CPLX(z_euler);
+    printf("[1] e^(0 + pi*i) = %.2f + %.2fi (Esperado: -1.00 + 0.00i)\n", res_euler.rec.real, res_euler.rec.imag);
+    printf("    Formato: %s\n\n", res_euler.f == rec ? "RETANGULAR" : "POLAR");
+    */
+
+    /*
+    // --- TESTE 15: imprimir_CPLX ---
+    printf("--- Teste 15: imprimir_CPLX ---\n");
+    t_cplx z_rec;
+    z_rec.f = rec;
+    z_rec.rec.real = 3.0;
+    z_rec.rec.imag = 4.0;
+    printf("[1] Retangular: ");
+    imprimir_CPLX(z_rec);
+
+    t_cplx z_pol;
+    z_pol.f = pol;
+    z_pol.pol.mod = 5.0;
+    z_pol.pol.arg = 0.9273;
+    printf("[2] Polar: ");
+    imprimir_CPLX(z_pol);
+    printf("\n");
+    */
+
+    /*
+    // --- TESTE 16: raizes_CPLX ---
+    printf("--- Teste 16: raizes_CPLX ---\n");
+    t_cplx c_polar;
+    c_polar.f = pol;
+    c_polar.pol.mod = 16.0;
+    c_polar.pol.arg = 0.0;
+
+    int n = 4;
+    t_cplx raizes[4];
+    raizes_CPLX(c_polar, n, raizes);
+
+    printf("As 4 raizes de (16 < 0 rad) sao:\n");
+    for(int k = 0; k < n; k++) {
+        printf("  Raiz %d: ", k);
+        imprimir_CPLX(raizes[k]);
+    }
+    printf("\n");
+    */
+
     return 0;
 }

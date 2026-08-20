@@ -114,7 +114,17 @@ Mantenha o formato de a.
 */
 t_cplx conjugado_CPLX(t_cplx a) {
     if(a.f == rec) {
-        
+        t_cplx resultado;
+        resultado.f = rec;
+        resultado.rec.real = a.rec.real;
+        resultado.rec.imag = -a.rec.imag;
+        return resultado;
+    } else if(a.f == pol) {
+        t_cplx resultado;
+        resultado.f = pol;
+        resultado.pol.mod = a.pol.mod;
+        resultado.pol.arg = -a.pol.arg;
+        return resultado;
     }
 }
 
@@ -124,9 +134,12 @@ que, dado um CPLX em qualquer formato,
 devolva o modulo.
 */
 double mod_CPLX(t_cplx a) {
-    // TODO: --preencher lógica da função--
-    (void)a;
-    return 0.0;
+    if(a.f == pol) {
+        return a.pol.mod;
+    } else if(a.f == rec) {
+        t_cplx a_pol = converte_CPLX(a, pol);
+        return a_pol.pol.mod;
+    }
 }
 
 /*
@@ -135,9 +148,12 @@ que, dado um CPLX em qualquer formato,
 devolva o argumento.
 */
 double arg_CPLX(t_cplx a) {
-    // TODO: --preencher lógica da função--
-    (void)a;
-    return 0.0;
+    if(a.f == pol) {
+        return a.pol.arg;
+    } else if(a.f == rec) {
+        t_cplx a_pol = converte_CPLX(a, pol);
+        return a_pol.pol.arg;
+    }
 }
 
 /*
@@ -146,9 +162,12 @@ que, dado um CPLX em qualquer formato,
 devolva a parte imaginaria.
 */
 double img_CPLX(t_cplx a) {
-    // TODO: --preencher lógica da função--
-    (void)a;
-    return 0.0;
+    if(a.f == rec) {
+        return a.rec.imag;
+    } else if(a.f == pol) {
+        t_cplx a_rec = converte_CPLX(a, rec);
+        return a_rec.rec.imag;
+    }
 }
 
 /*
@@ -157,9 +176,12 @@ que, dado um CPLX em qualquer formato,
 devolva a parte real.
 */
 double re_CPLX(t_cplx a) {
-    // TODO: --preencher lógica da função--
-    (void)a;
-    return 0.0;
+    if(a.f == rec) {
+        return a.rec.real;
+    } else if(a.f == pol) {
+        t_cplx a_rec = converte_CPLX(a, rec);
+        return a_rec.rec.real;
+    }
 }
 
 /*
@@ -169,9 +191,13 @@ e um expoente 'n' double, devolva um CPLX
 que é o resultado de 'a' elevado a 'n'
 */
 t_cplx potencia_CPLX(t_cplx a, double n) {
-    // TODO: --preencher lógica da função--
-    (void)n;
-    return a;
+    t_cplx a_pol = converte_CPLX(a, pol);
+    t_cplx resultado;
+    resultado.f = pol;
+    resultado.pol.mod = pow(a_pol.pol.mod, n);
+    resultado.pol.arg = a_pol.pol.arg * n;
+    resultado = converte_CPLX(resultado, a.f);
+    return resultado;
 }
 
 /*
@@ -181,8 +207,13 @@ devolva um CPLX que é o resultado de
 e (constante de euler) elevado a 'a'
 */
 t_cplx exp_CPLX(t_cplx a) {
-    // TODO: --preencher lógica da função--
-    return a;
+    t_cplx a_rec = converte_CPLX(a, rec);
+    t_cplx resultado;
+    resultado.f = pol;
+    resultado.pol.mod = exp(a_rec.rec.real);
+    resultado.pol.arg = a_rec.rec.imag;
+    resultado = converte_CPLX(resultado, a.f);
+    return resultado;
 }
 
 /*
@@ -191,8 +222,11 @@ que, dado um CPLX, imprima o
 valor dele, de acordo com seu formato.
 */
 void imprimir_CPLX(t_cplx a) {
-    // TODO: --preencher lógica da função--
-    (void)a;
+    if(a.f == rec) {
+        printf("%.2f + %.2fi\n", a.rec.real, a.rec.imag);
+    } else if(a.f == pol) {
+        printf("%.2f /_ %.2f rad\n", a.pol.mod, a.pol.arg);
+    }
 }
 
 /*
@@ -202,8 +236,11 @@ que, dado um CPLX, calcule
 as enezimas raízes
 */
 void raizes_CPLX(t_cplx c, int n, t_cplx resultados[]) {
-    // TODO: --preencher lógica da função--
-    (void)c;
-    (void)n;
-    (void)resultados;
+    t_cplx c_pol = converte_CPLX(c, pol);
+    for(int k = 0; k < n; k++) {
+        resultados[k].f = pol;
+        resultados[k].pol.mod = pow(c_pol.pol.mod, 1.0/n);
+        resultados[k].pol.arg = (c_pol.pol.arg + 2.0 * M_PI * k) / n;
+        resultados[k] = converte_CPLX(resultados[k], c.f);
+    }
 }
