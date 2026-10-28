@@ -1,0 +1,26 @@
+#ifndef _CLASS_ALUNO_
+#define _CLASS_ALUNO_
+
+#include <iostream>
+#include "Pessoa.hpp"
+
+using namespace std;
+
+class Aluno: public Pessoa {
+    private:
+        string _prontuario;
+        string _senha;
+        float _ira;
+    public:
+        Aluno(string nome, int idade, string prontuario, string senha, float ira);
+        void estudar(string materia);
+        void fazerProva(void);
+        string getSenha(void);
+        void setSenha(string senha);
+        string getProntuario(void);
+        float getIra(void); 
+        void setIra(float ira);
+        void apresentar(string cumprimento) override;
+};
+
+#endif
