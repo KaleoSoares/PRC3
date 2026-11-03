@@ -51,10 +51,10 @@ void Sensor::imprimirRelatorio() const {
     cout << "[" << getNomeTipo() << "] Sensor: #" << _id << " (" << _modelo << ")" << endl;
     cout << "Total de Amostras: " << _historico.getTamanho() << endl;
     cout << fixed << setprecision(2);
-    cout << "Mínimo: " << _historico.minimo() << " " << getUnidade() << endl;
-    cout << "Máximo: " << _historico.maximo() << " " << getUnidade() << endl;
-    cout << "Média: " << _historico.media() << " " << getUnidade() << endl;
-    cout << "RMS: " << _historico.rms() << " " << getUnidade() << endl;
+    cout << "Mínimo:        " << _historico.minimo() << " " << getUnidade() << endl;
+    cout << "Máximo:        " << _historico.maximo() << " " << getUnidade() << endl;
+    cout << "Média:         " << _historico.media() << " " << getUnidade() << endl;
+    cout << "RMS:           " << _historico.rms() << " " << getUnidade() << endl;
     cout << "Desvio Padrão: " << _historico.desvioPadrao() << " " << getUnidade() << endl;
     cout << "Média Móvel (#" << _janela << "): " << _historico.mediaMovel(_janela) << " " << getUnidade() << endl;
     cout << "----------------------------------------" << endl;

@@ -67,7 +67,7 @@ void SensorVibracao::avaliarAlarme(int idGlobal, int idLocal, double valorConver
     cout << "[Vibração] Sensor #" << getId() << " (" << getModelo() << ") [Global: #" << idGlobal
          << " | Local: #" << idLocal << "]: " << valorConvertido << " mm/s | ";
     if (valorConvertido > getLimiarCritico()) {
-        cout << "ALERTA: VIBRAÇÃO EXCESSIVA" << endl;
+        cout << "ALERTA: FALHA DE BALANCEAMENTO ESTRUTURAL" << endl;
     } else {
         cout << "STATUS: OPERAÇÃO NOMINAL" << endl;
     }
